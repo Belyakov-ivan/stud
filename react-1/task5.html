@@ -1,0 +1,66 @@
+<html>
+<head>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script> 
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+<body> 
+    <h1>Hi, there!</h1>
+    
+
+    <div id="react-root"></div>
+    <script type="text/babel">
+        class Hello extends React.Component {
+    
+            constructor(){
+                super();
+                this.state = {
+                    what: "Goodby",
+                    clickCount: 0
+                };
+                this.updateMessage = this.updateMessage.bind(this);
+                this.clearCounter = this.clearCounter.bind(this);
+            }
+        
+            updateMessage() {
+                this.state.clickCount+=1;
+
+                if (this.state.what === "Goodby") {
+                    this.setState({
+                        what: "Hello"
+                    });
+                } else {
+                    this.setState({
+                        what: "Goodby"
+                    });
+                }
+            }  
+
+            clearCounter(){
+                this.setState({
+                        clickCount: 0
+                });
+            }  
+                
+            render() {
+                return (
+                    <div>
+                        <h1>{this.state.what}, {this.props.who}!</h1>
+                        <h2> {this.state.clickCount}</h2>
+                        <button onClick={this.updateMessage}>Click me!</button>
+                        <button onClick={this.clearCounter}>Clear counter</button>
+                    </div>   
+                )
+            }
+            
+        }
+
+        ReactDOM.render(
+            <Hello who="Ivan" />, 
+            document.getElementById("react-root")
+        );
+
+
+    </script>
+</body>
+</html>
